@@ -1,9 +1,3 @@
-In order to view, open the index.html file in a browser.
-
-
-Slide Content
-Setups Python 
-Configures credentials needed by EC2.
-
+Up to date slides will always be at : http://www.rvl.io/bearrito/pittsburgh-nosql-_-mapreduce
 
 
