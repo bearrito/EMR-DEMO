@@ -1,0 +1,3 @@
+barrett@yggdrasil:~$ cat /home/barrett/Git/EMR-DEMO/code/resources/mapper_input | python /home/barrett/Git/EMR-DEMO/code/src/EMRDemoMapper.py | sort -k1,1 |python /home/barrett/Git/EMR-DEMO/code/src/EMRDemoReducer.py
+
+
