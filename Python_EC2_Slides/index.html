@@ -1,0 +1,1511 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Barrett Strausser" >
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+    <section>
+        <h1>pittsburgh nosql &nbsp;mapreduce</h1>
+        <p>Barrett Strausser</p>
+        <p>@barrettsmash</p>
+    </section>
+    <section>
+        <h2>Navigation</h2>
+        <div>
+            <ul>
+                <li>Main Flow use left and right keys</li>
+                <li>Code,Configuration and Miscellany use up and down</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h2>Lots of MATERIAL</h2>
+        <div>
+            <ul>
+                <li>What is MapReduce</li>
+                <li>Setup on AWS</li>
+                <li>Basics of Mappers and Reducer by example</li>
+                <li>Another MapReduce Example</li>
+                <li>HIVE</li>
+                <li>PIG</li>
+            </ul>
+            <div style="text-align: left;">
+                <br>
+            </div>
+        </div>
+        <div style="text-align: left;">Lots of material. Each topic deserves a good 30 mins. We have 1 hour and 30..... Let's go.</div>
+    </section>
+    <section>
+        <section>
+            <h2>
+                <font color="#ffff99">Map Reduce</font>
+            </h2>
+            <div>
+                <ul>
+                    <li>An <font color="#ff0000">algorithm</font> not a framework</li>
+                    <li>Might better be called emit and aggregate</li>
+                    <li>It is about selecting or projecting or MAPPING</li>
+                    <li>And then aggregating or summing or REDUCING&nbsp;</li>
+                    <li>Grok the below nonsense for great learning....</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: left;">
+                <div style="background-color: rgb(255,255,255);">
+                    <font color="#000000">Types:</font>
+                </div>
+                <div style="text-align: center;background-color: rgb(255,255,255);">
+                    <font color="#000000">map (k1,v1) =&gt; list((k2,v2))</font>
+                </div>
+                <div style="text-align: center;background-color: rgb(255,255,255);">
+                    <font color="#000000">reduce (k2,list(v2)) =&gt; list(v2)&nbsp;</font>
+                </div>
+            </div>
+            <div style="text-align: left;">
+                <font color="#000000">&nbsp;&nbsp;</font>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+        </section>
+        <section>
+            <h3>
+                <font color="#ffff99">Example - Simple &nbsp;Web Index</font>
+            </h3>
+            <div>
+                <div style="background-color: rgb(255,255,255);text-align: left;">
+                    <font color="#000000">Types:</font>
+                </div>
+                <div style="background-color: rgb(255,255,255);">
+                    <font color="#000000">map (url,content) =&gt; list(word,url)</font>
+                </div>
+                <div style="background-color: rgb(255,255,255);">
+                    <font color="#000000">reduce (word,list(url)) =&gt; list((word,set(url))&nbsp;</font>
+                </div>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <ol>
+                    <li>Input a webpage model of form (url,content)<br>
+                    </li>
+                    <li>Map(url, content) &nbsp;to (word, url) &nbsp;by splitting content into words. &nbsp;</li>
+                    <li>Reduce (word, list(url)) by emitting (word,set(url))</li>
+                </ol>
+            </div>
+        </section>
+        <section>
+            <h2>
+                <font color="#ffff99">For the visual learners</font>
+                <img src="http://i.imgur.com/r9U3k.png">
+            </h2>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Hadoop</h2>
+            <div>
+                <ul>
+                    <li style="text-align: left;">MapReduce + HDFS</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li style="text-align: left;">HDFS = Hadoop File System&nbsp;</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li style="text-align: left;">I mostly get by ignoring the details of trackers, job nodes as I'm concerned with productivity than optimal settings</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li style="text-align: left;">Your mileage may vary</li>
+                </ul>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+        </section>
+        <section>
+            <h2>AWS</h2>
+            <div>
+                <ul>
+                    <li>I prefer Amazon EMR (Elastic Map Reduce)</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>My data is already there (S3)</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>I can use tools I know (boto)</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>Integrates well with the other AWS products (dynamodb)</li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <h2>Aws Tool Setup</h2>
+            <div>
+                <ul>
+                    <li>setup is by no means exhaustive</li>
+                    <li>miminal steps needed</li>
+                </ul>
+            </div>
+            <div>
+                <pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                    <code style="padding: 0.0px;">sudo vi ~/.bashrc || sudo vi ~/.bash_profile</code>
+                </pre>
+            </div>
+            <div>
+                <pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                    <code style="padding: 0.0px;">export EC2_HOME = ...</code>
+                    <code style="padding: 0.0px;">export EC2_PRIVATE_KEY=pk-foo.pem</code>
+                    <code style="padding: 0.0px;">export EC2_CERT=cert-foo.pem<br>
+                    </code>
+                    <code style="padding: 0.0px;">export EC2_KEYPAIR=...</code>
+                    <code style="padding: 0.0px;">export EC2_URL=...</code>
+                </pre>
+            </div>
+            <pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">$sudo apt-get install python,pip</code>
+                <code style="padding: 0.0px;">$pip install boto
+</code>
+            </pre>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Example Schema</h2>
+<div>
+    <ul>
+        <li>Machine Name = Identifier of Sensor. Ranging from 1-3</li>
+        <li>Record_Date = Timestamp of sensor reading.</li>
+        <li>Channel_1 = Normally Distributed N(i,1). i = machine id&nbsp;</li>
+        <li>Channel_2 = Exponentially Distributed with lambda =3</li>
+        <li>Channel_3 = Lognormally Distributed LN(0,2)</li>
+    </ul>
+    <div style="text-align: left;">
+        <br>
+    </div>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  <font color="#99cc00">Machine-1</font>    2012-11-28 22:42:00	0.1722	0.108	6.2504</code>
+<code style="padding: 0.0px;">  <font color="#99cc00">Machine-2</font>    2012-11-28 22:42:00	0.0185	0.3336	3.316</code>
+<code style="padding: 0.0px;">  <font color="#99cc00">Machine-3</font>    2012-11-28 22:42:00	1.6843	0.2725	1.3314</code>
+<code style="padding: 0.0px;">  <font color="#99cc00">Machine-1</font>    2012-11-28 22:42:00	0.1482	0.1422	0.3965</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+<code style="padding: 0.0px;">
+<div style="text-align: left;">
+    <br>
+</div>
+<h4>
+    <br>
+</h4>
+<div>
+    <br>
+</div>
+<div>
+    <br>
+</div>
+
+
+
+
+</code>
+
+
+</section>
+        <section>
+            <h2>Model Code</h2>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+records = []
+<font color="#FF3399">with</font> open(<font color="#3300FF">'/home/barrett/Git/EMR-DEMO/code/resources/mapper_input'</font>,'w+') as f:
+    for i in range(10000):
+        input = machine_name = " Machine-" + str((i % 3) + 1) + '\t'
+        input += str(datetime.datetime.today().replace(second=0, microsecond=0)) + '\t'
+        input +=  str(round(random.normalvariate((i % 3),1),4)) + '\t'
+        input +=  str(round( random.expovariate(3),4) )+ '\t'
+        input +=  str(round(random.lognormvariate(0,2),4)) + '\n'
+       <font color="#9999CC"> f.write</font>(input)
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+<code style="padding: 0.0px;">
+</code>
+</code>
+</div>
+<code style="padding: 0.0px;">
+
+
+
+
+
+
+
+
+
+</code>
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>&nbsp;Mapper</h2>
+            <div>
+                <ul>
+                    <li>Read the files in from STDIN</li>
+                    <li>Split on '\t' to find the key and values</li>
+                    <li>Your input format determines how you parse</li>
+                    <li>Process the values however you wish</li>
+                    <li>Emit a (key, value) pair by printing to STDOUT</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: left;">
+                <ul>
+                    <li>Crucial parts indicated below in red...Everything else is up to you.</li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <h2>Code</h2>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+#!/usr/bin/env python
+# encoding: utf-8
+<font color="#3300CC">import</font> sys
+<font color="#3300CC">import</font> decimal
+
+
+<font color="#66CC66">def</font> some_function(sensor_record):
+
+    numerical_record = []
+    for record in sensor_record:
+        scaled = decimal.Decimal(record).quantize(decimal.Decimal('.001'),rounding=decimal.ROUND_DOWN)
+        numerical_record.append(scaled)
+
+
+
+    <font color="#FF6699">return</font> ''.join(map(lambda x: str(x) + ' ',numerical_record))
+
+<font color="#66CC66">def</font> record_cleaner(record):
+    record = record.strip()
+    (key,date,c1,c2,c3) = record.split('\t')
+    values = [c1,c2,c3]
+    <font color="#FF6699">return</font> (key,values)
+
+<font color="#66CC66">def </font>process(count,record) :
+    count += 1
+    (key,values) =  record_cleaner(record)
+    transformed_data = some_function(values)
+    output = '%s\t%s:%s' % (key,count,transformed_data)
+    print output
+
+    <font color="#FF6699">return</font> count
+
+
+count = 0
+
+<font color="#FF00CC">for</font> record in sys.stdin :
+    count = process(count,record)
+
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+<code style="padding: 0.0px;">
+</code>
+</code>
+</div>
+<code style="padding: 0.0px;">
+</code>
+
+
+
+
+
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>Reducer</h2>
+            <div>
+                <ul>
+                    <li>The reducer is very similar to the mapper</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>You read in from StdIn</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>You split on '\t' into key and value</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>You then process the records how you wish</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+                <ul>
+                    <li>Write the results to StdOut</li>
+                </ul>
+                <div style="text-align: left;">
+                    <br>
+                </div>
+            </div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+        </section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Start reading in records</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#cccc99">import</font> sys
+<font color="#cccc99">import</font> decimal
+<font color="#cccc99">import</font> math<br>
+<br>machine_name = None
+key = ''
+machine = 'foo'
+print &gt;&gt; sys.stderr, 'Starting'
+for record in sys.stdin:
+    if(record != None and record != '') :
+
+        (k,i,v) = record_cleaner(record)
+
+        if(machine_name == None):
+            record_count = 0
+            running_sum = [0,0,0]
+            machine_name = k
+
+        if(machine_name != k):
+
+            estimates = estimate_parameters(record_count,running_sum)
+            print '%s\t%s:%s:%s:%s' % (machine_name,estimates[0],estimates[1],estimates[2],estimates[3])
+
+            machine_name = k
+            #print &gt;&gt; sys.stderr, 'machine ' + machine_name
+            record_count = 0
+            running_sum = [0,0,0]
+            (record_count,running_sum) = process(record_count,running_sum,record)
+        else:
+            #print &gt;&gt; sys.stderr, 'processing %s' % record
+            (record_count,running_sum) = process(record_count,running_sum,record)
+
+
+
+estimates = estimate_parameters(record_count,running_sum)
+print '%s\t%s:%s:%s:%s' % (machine_name,estimates[0],estimates[1],estimates[2],estimates[3])
+
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+
+</section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Core Logic</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#FF3399">def</font> <font color="#FFCC99">process</font>(record_count,running_sum,record):
+    record_count += 1
+    record = record_cleaner(record)
+    data_tuple = record_to_datatuple(record[2])
+    running_sum = compute_sum(running_sum,data_tuple)
+    t = (record_count,running_sum)
+    <font color="#339933">return</font> t
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+</section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Split into key and value(s) based on file format</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#ffffcc">def</font> <font color="#00cc33">record_cleaner</font>(record):
+    record = record.strip()
+    split_record = record.split('\t')
+    key = split_record[0]
+    split_record = split_record[1].split(":")
+    id = split_record[0]
+    value = split_record[1]
+    <font color="#ff33cc">return</font> (key,id,value)
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+</section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Process into a list and do some numerical manipulation</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#ffffcc">def</font> <font color="#00ff33">record_to_datatuple</font>(record):
+    split_record = record.split(" ")
+    numerical_record = []
+    for record in split_record:
+        scaled = decimal.Decimal(record).quantize(decimal.Decimal('.001'),rounding=decimal.ROUND_DOWN)
+        numerical_record.append(scaled)
+
+    <font color="#ff66cc">return</font> numerical_record
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+</section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Keep a running sum as we iterate</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#ffffcc">def</font> <font color="#00cc33">compute_sum</font>(running_sum,data_tuple):
+    try:
+        running_sum[0] += data_tuple[0]
+        running_sum[1] += data_tuple[1]
+        running_sum[2] += data_tuple[2]
+    except :
+        print &gt;&gt; sys.stderr, 'error in running sum with tuple %s' % data_tuple
+    <font color="#ff33cc">return</font> running_sum
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+</section>
+        <section>
+            <h2>Reducer WalkThrough </h2>
+<div>
+    <ul>
+        <li>Finally compute the estimates</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+<font color="#ffffcc">def</font> <font color="#00cc33">estimate_parameters</font>(record_count,running_sum):
+
+    normal_estimate = running_sum[0] / record_count
+    exponential_estimate = 1 / (running_sum[1] /record_count)
+
+    log_sum = running_sum[2]
+
+    log_u =  log_sum / record_count
+
+    log_numerator =  log_sum*log_sum - log_sum*log_u + log_u*log_u
+    log_sigma = log_numerator / record_count
+    <font color="#ff00cc">return</font> (normal_estimate,exponential_estimate,log_u,log_sigma)
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>Job Context</h2>
+<div>
+    <ul>
+        <li>Great.Let's burn some rubbers.</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+import boto
+from boto.s3.key import Key
+from boto.emr.step import StreamingStep
+
+
+root_path = '/home/barrett/Git/EMR-DEMO/code/'
+s3 = boto.connect_s3()
+emr_demo_bucket = s3.create_bucket('bearrito.demos.emr')
+emr_demo_bucket.set_acl('private')
+
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+</section>
+        <section>
+            <h2>Job Context</h2>
+<div>
+    <ul>
+        <li>Upload all our scripts</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+json_records = Key(emr_demo_bucket)
+json_records.key = "input/hive/mapper_input"
+json_records.set_contents_from_filename(root_path + 'resources/mapper_input')
+
+input_key = Key(emr_demo_bucket)
+input_key.key = "input/0/mapper_input"
+input_key.set_contents_from_filename( root_path + 'resources/mapper_input')
+
+mapper_key = Key(emr_demo_bucket)
+mapper_key.key = "scripts/mapper_script.py"
+mapper_key.set_contents_from_filename(root_path + 'src/EMRDemoMapper.py')
+
+reducer_key = Key(emr_demo_bucket)
+reducer_key.key = "scripts/reducer_script.py"
+reducer_key.set_contents_from_filename( root_path +  'src/EMRDemoReducer.py')
+
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+</section>
+        <section>
+            <h2>Job Context</h2>
+<div>
+    <ul>
+        <li>Run and Monitor the Job.</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">  
+demo_step = StreamingStep(name ='EMR Demo Example'
+                    ,mapper='s3://bearrito.demos.emr/scripts/mapper_script.py'
+                    ,reducer='s3://bearrito.demos.emr/scripts/reducer_script.py'
+                    ,input='s3://bearrito.demos.emr/input/0'
+                    ,output='s3://bearrito.demos.emr/output')
+
+emr = boto.connect_emr()
+jobid = emr.run_jobflow(name="EMR Example",log_uri='s3://bearrito.demos.logs',steps = [demo_step])
+
+status = emr.describe_jobflow(jobid)
+</code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>More EXAMPLES!</h2>
+<div>
+    <ul>
+        <li>The last example was focused on aggregation</li>
+        <li>What about a search example</li>
+            <li>Given a target record find the machine that generated the record closest to that record</li>
+        </ul>
+        <div>
+            <div style="text-align: left;">
+                <ul>
+                    <li>Our approach is going to work in phases</li>
+                    </ul>&nbsp;</div>
+                    <div style="text-align: left;">
+                        <br>
+                    </div>
+                    <div style="text-align: left;">
+                        <ol>
+                            <li>Given inputs emit a (machine_name, distance) pair</li>
+                            <li>Foreach machine_name emit the smallest distance</li>
+                            <li>Collapse the set of min distance onto a single key</li>
+                            <li>Loop over and emit the smallest.</li>
+                        </ol>
+                    </div>
+
+
+
+</div>
+                </div>
+            </section>
+            <section>
+                <h2>Mapper Phase 0</h2>
+<div>
+    <ul>
+        <li>Given a target emit a machine name and distance.</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+#!/usr/bin/env python
+# encoding: utf-8
+<font color="#FF3399">import</font> decimal
+<font color="#FF3399">import</font> math
+<font color="#FF3399">import</font> sys
+
+<font color="#6666CC">def</font> record_to_decimal(sensor_record):
+    numerical_record = []
+    for record in sensor_record:
+        scaled = decimal.Decimal(record).quantize(decimal.Decimal('.001'),rounding=decimal.ROUND_DOWN)
+        numerical_record.append(scaled)
+    return numerical_record
+
+
+<font color="#3366CC">def</font> record_cleaner(record):
+    #print(record)
+    record = record.strip()
+    (super_key,record_date,c1,c2,c3) = record.split('\t')
+    key = super_key[super_key.index('Machine'):]
+    values = [c1,c2,c3]
+    #print(values)
+    return (key,values)
+
+<font color="#3366CC">def</font> compute_distance(target,data):
+    d0 = (target[0] - data[0])**2
+    d1 = (target[1] - data[1])**2
+    d2 = (target[2] - data[2])**2
+
+    return math.sqrt(d0 + d1 + d2)
+
+<font color="#3366CC">def</font> process(target,record) :
+    (key,values) =  record_cleaner(record)
+    transformed_data = record_to_decimal(values)
+    distance = compute_distance(target,transformed_data)
+    output = '%s\t%s' % (key,distance)
+    print output
+
+
+target = (decimal.Decimal(-1.53),decimal.Decimal(0.144),decimal.Decimal(1.99))
+<font color="#009933">for </font>record in sys.stdin:
+     process(target,record)
+</code>
+            </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+</section>
+            <section>
+                <h2>Reducer Phase 0</h2>
+<div>
+    <ul>
+        <li>For a given key(machine) emit the closest record</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+#!/usr/bin/env python
+# encoding: utf-8
+<font color="#FF3399">import</font> decimal
+<font color="#FF3399">import</font> sys
+
+<font color="#3366CC">def</font> process(min_machine,min_distance,record) :
+    (key,value) = record.split("\t")
+    data = decimal.Decimal(value).quantize(decimal.Decimal('.001'),rounding=decimal.ROUND_DOWN)
+    if(min_machine == None) :
+        min_machine = key
+        min_distance = None
+
+    if(min_machine != key) :
+        print "%s\t%s" % (min_machine,min_distance)
+        min_machine = key
+        min_distance = None
+
+    if(min_distance == None or data &lt; min_distance) :
+        min_distance = data
+
+    <font color="#009933">return</font> (min_machine,min_distance)
+
+
+min_distance = None
+min_machine = None
+for record in sys.stdin :
+    (min_machine,min_distance) = process(min_machine,min_distance,record)
+print "%s\t%s" % (min_machine,min_distance)
+</code>
+            </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+</section>
+            <section>
+                <h2>Mapper Phase 1</h2>
+<div>
+    <ul>
+        <li>Given all the min keys, project them onto a common key.</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+#!/usr/bin/env python
+# encoding: utf-8
+<font color="#FF3399">import</font> sys
+for record in sys.stdin :
+     (key,value) = record.split('\t')
+     print "%s\t%s:%s" % ('agg',key,value)
+</code>
+            </pre>
+            <code style="padding: 0.0px;">
+<code style="padding: 0.0px;">
+</code>
+</code>
+        </div>
+        <code style="padding: 0.0px;">
+
+
+</code>
+    </section>
+    <section>
+        <h2>Reducer Phase 1</h2>
+<div>
+    <ul>
+        <li>Loop over all min keys and emit the smallest</li>
+</ul>
+</div>
+<div style="text-align: left;">
+    <pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">
+#!/usr/bin/env python
+# encoding: utf-8
+<font color="#FF3399">import</font> decimal
+<font color="#FF3399">import</font> sys
+
+
+<font color="#009933">def</font> process(min_machine,min,record) :
+    try :
+
+        (key,value) = record.split('\t')
+        (machine,distance) = value.split(':')
+        data = decimal.Decimal(distance).quantize(decimal.Decimal('.001'),rounding=decimal.ROUND_DOWN)
+
+        if(min == None or data &lt; min) :
+            min = data
+            min_machine = machine
+    except :
+        a = 1
+    <font color="#3366CC">return</font> (min_machine,min)
+
+
+min = None
+min_machine = None
+
+for record in sys.stdin :
+    if(record != None or record != ""):
+        (min_machine,min) = process(min_machine,min,record)
+
+print "%s\t%s" % (min_machine,min)
+
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+</section>
+    <section>
+        <h2>Job Setup</h2>
+<div>
+    <ul>
+        <li>Setup our code</li>
+        <li>Notice the boostrap step<br>
+        </li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">  
+#!/usr/bin/env python
+# encoding: utf-8
+import boto
+from boto.s3.key import Key
+from boto.emr.step import StreamingStep
+from boto.emr.bootstrap_action import BootstrapAction
+
+root_path = '/home/barrett/Git/EMR-DEMO/code/'
+
+
+s3 = boto.connect_s3()
+emr_demo_bucket = s3.create_bucket('bearrito.demos.emr')
+emr_demo_bucket.set_acl('private')
+
+
+
+input_key = Key(emr_demo_bucket)
+input_key.key = "input/0/mapper_input"
+input_key.set_contents_from_filename(root_path + 'resources/mapper_input')
+
+mapper_key = Key(emr_demo_bucket)
+
+
+mapper_key.key = "scripts/bootstrap.sh"
+mapper_key.set_contents_from_filename(root_path + 'src/BootStrap.sh')
+
+bootstrap_step = BootstrapAction("bootstrap.sh",'s3://bearrito.demos.emr/scripts/bootstrap.sh',None)
+
+
+mapper_key.key = "scripts/mapper_nearest_0.py"
+mapper_key.set_contents_from_filename(root_path + 'src/EMRNearestMapper0.py')
+
+
+
+mapper_key.key = "scripts/mapper_nearest_1.py"
+mapper_key.set_contents_from_filename(root_path + 'src/EMRNearestMapper1.py')
+
+reducer_key = Key(emr_demo_bucket)
+reducer_key.key = "scripts/reducer_nearest_0.py"
+reducer_key.set_contents_from_filename(root_path + 'src/EMRNearestReducer0.py')
+
+reducer_key.key = "scripts/reducer_nearest_1.py"
+reducer_key.set_contents_from_filename(root_path + 'src/EMRNearestReducer1.py')
+
+
+
+nearest_0 = StreamingStep(name ='EMR First Phase'
+    ,mapper='s3://bearrito.demos.emr/scripts/mapper_nearest_0.py'
+    ,reducer='s3://bearrito.demos.emr/scripts/reducer_nearest_0.py'
+    ,input='s3://bearrito.demos.emr/input/0'
+    ,output='s3://bearrito.demos.emr/output/0')
+
+nearest_1 = StreamingStep(name ='EMR Second Phase'
+    ,mapper='s3://bearrito.demos.emr/scripts/mapper_nearest_1.py'
+    ,reducer='s3://bearrito.demos.emr/scripts/reducer_nearest_1.py'
+    ,input='s3://bearrito.demos.emr/output/0'
+    ,output='s3://bearrito.demos.emr/output/1')
+
+emr = boto.connect_emr()
+jobid = emr.run_jobflow(name="EMR Two Phase"
+                        ,log_uri='s3://bearrito.demos.logs'
+                        ,steps = [nearest_0,nearest_1]
+                        ,bootstrap_actions=[bootstrap_step])
+
+status = emr.describe_jobflow(jobid)
+
+
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+</section>
+    <section>
+        <h2>Bootstrap.sh</h2>
+<div>
+    <ul>
+        <li>Need to ensure that we have correct runtime deps</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">  
+wget http://python.org/ftp/python/2.7.2/Python-2.7.2.tar.bz2
+tar jfx Python-2.7.2.tar.bz2
+cd Python-2.7.2
+./configure --with-threads --enable-shared
+make
+sudo make install
+sudo ln -s /usr/local/lib/libpython2.7.so.1.0 /usr/lib/
+sudo ln -s /usr/local/lib/libpython2.7.so /usr/
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+<code style="padding: 0.0px;">
+</code>
+</code>
+</div>
+<code style="padding: 0.0px;">
+
+
+</code>
+</section>
+</section>
+<section>
+    <h2>Break TIME</h2>
+    <div>
+        <ul>
+            <li>Any questions so far?</li>
+        </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+        <ul>
+            <li>We've put in a lot of work so far for not much to show</li>
+        </ul>
+        <ol>
+            <li>Quirky syntax of mapper and reducer<br>
+            </li>
+            <li>Creating input and output locations on S3</li>
+            <li>Managing jobs directly</li>
+        </ol>
+        <div style="text-align: left;">
+            <br>
+        </div>
+        <ul>
+            <li>We are going to look at abstractions that make this easier</li>
+        </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+    </div>
+</section>
+<section>
+    <section>
+        <h2>HIVE Motivation</h2>
+<div>
+    <ul>
+        <li>Let's backup</li>
+        <li>What does the below do in your SQL version</li>
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">  
+<font color="#cccc99">SELECT</font> sum(channel_1), count(channel_1)
+<font color="#ff9999">FROM</font> sensor_records
+<font color="#66ccff">GROUPBY</font> machine_name</code>
+        </pre>
+
+</div>
+<code style="padding: 0.0px;">
+</code>
+<div>
+    <ul>
+        <li>It probably groups records in a recordset by a field</li>
+        <li>Then computes the sum of a field and counts the number of records</li>
+    </ul>
+        <div style="text-align: left;">
+            <br>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+</section>
+        <section>
+            <h2>map Reduce Formulation</h2>
+<div>
+    <ul>
+        <li>FROM sensor_records =&gt; Defining the S3 Bucket or HDFS location.</li>
+        <li>GROUPBY machine_name =&gt; Becomes the MAP phase or emitting records with machine_name as key&nbsp;</li>
+<li>Example =&gt; ('Machine-1', .003)</li>
+        <li>SELECT =&gt; Becomes REDUCE phase with aggregating based on keys</li>
+    </ul>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <div style="text-align: left;">
+                <ul>
+                    <li>We've already done this....with much code and overhead</li>
+                </ul>
+            </div>
+</div>
+
+</section>
+            <section>
+                <h2>HIVE</h2>
+                <div>
+                    <ul>
+                        <li>Hive is an abstraction layer on top of HADOOP that allows for SQL like syntax and semantics.</li>
+                    </ul>
+                    <div style="text-align: left;">
+                        <br>
+                    </div>
+                </div>
+                <div style="text-align: left;">
+                    <ul>
+                        <li>Hides much of the gory details&nbsp;</li>
+                    </ul>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Very configurable but generally works out of the box.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h2>Getting STARTEd</h2>
+<div>
+    <ul>
+        <li>I'm going to run this in interactive mode.</li>
+<li>Plenty of docs on this. RTFM and start a job.</li>
+<li>Then do.</li>
+        
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+ssh -i /home/barrett/EC2/MyKey.pem hadoop@ec2-.xxx.xxx.xx.xx.compute.amazonaws.com
+</code>
+            </pre>
+<code style="padding: 0.0px;">
+</code>
+<li> Make sure your key is CHMOD 600 and you use the master IP</li>  
+
+</div>
+</section>
+            <section>
+                <h2>Hive CONSOLE</h2>
+<div>
+    <ul>
+        <li>Start &nbsp;a hive console&nbsp;</li>
+</ul>
+</div>
+<div style="text-align: left;">
+    <pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">
+        hadoop@ec2$ hive
+        hive&gt;
+        hive&gt; show tables;
+        OK
+        Time Take: 12.02 seocnds
+        hive&gt;
+    </code>
+            </pre>
+<code style="padding: 0.0px;">
+<code style="padding: 0.0px;">
+</code>
+</code>
+            <li>
+                <code style="padding: 0.0px;"> You should not have any tables yet</code>
+            </li>  
+
+
+</div>
+<code style="padding: 0.0px;">
+
+</code>
+</section>
+            <section>
+                <h2>PartiTIONS</h2>
+                <div>
+                    <ul>
+                        <li>I performed a step I didn't show you</li>
+                        <li>I partitioned my sensor records by machine name</li>
+                        <li>I have an S3 bucket that looks like :<img src="http://i.imgur.com/Ekvdc.png">
+                        </li>
+                        <li>Each directory has a file that only has records for that machine name.&nbsp;</li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2>Table Creation</h2>
+<div>
+    <ul>
+        <li>Why have partitions? Hortizontal Partitioning like regular SQL. Now do...</li>      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+CREATE EXTERNAL TABLE sensor_records (
+dq_machine_name string, record_date string, channel_1 float, channel_2 float, channel_3 float)
+PARTITIONED BY (machine_name string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION 's3://bearrito.demos.emr/input/hive/Sensor/';
+</code>
+            </pre>
+<code style="padding: 0.0px;">
+</code>
+<li>This creates a table with the given schema.
+</li>
+            <li>You can use most of the atomic types you are familiar with</li>  
+
+</div>
+
+
+
+
+</section>
+            <section>
+                <h2>Table Creation</h2>
+<div>
+    <ul>
+        <li>We partition by machine_name. Note that the partition column has the form column=value from our S3 bucket. So since our S3 bucket had machine_name =Machine-1 etc. We must use machine_name as the partition column.</li>
+                <li>We indicate the fields are separated the tab char</li>
+                <li>And we point the location at the root of partition folders. Now run..</li>      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  ALTER TABLE sensor_records RECOVER PARTITIONS;</code>
+            </pre>  
+
+</div>
+
+
+</section>
+            <section>
+                <h2>QUeRIES</h2>
+<div>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+                <code style="padding: 0.0px;">  
+SELECT COUNT(*) FROM sensor_records;
+//These won't launch hadoop jobs. 
+//No real computation to perform when partitioned.
+SELECT * FROM sensor_records LIMIT 10;
+
+SELECT * FROM sensor_records  
+WHERE machine_name = 'Machine-1' LIMIT 10;
+
+// This will launch jobs. Why is that?
+SELECT * FROM sensor_records  
+WHERE machine_name = 'Machine-1' AND channel_1 &lt; 0.0  LIMIT 10;
+
+//Since we know the distribution of the channels by machine 
+//we can easily check that aggregation is correct
+// Can anyone guess the result set? Think about the math.
+SELECT machine_name, AVG(channel_1) FROM sensor_records  GROUP BY machine_name;
+
+</code>
+            </pre>
+<code style="padding: 0.0px;">
+</code>
+</div>
+
+
+
+
+
+
+
+
+
+
+</section>
+            <section>
+                <h2>ResultSet</h2>
+                <div>
+                    <img src="http://i.imgur.com/37eQT.png">
+                    <br>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Pig Motivation</h2>
+                <ul>
+                    <li>Different compuation model than HIVE</li>
+                    <li>Hive is conceptually more SQL like<br>
+                    </li>
+                    <li>PIG is more of a data flow language</li>
+                </ul>
+                <p>
+                <br>
+            </p>
+            <ul>
+                <li>Pig allows for a dataflow pipeline</li>
+                <li>Allows for splits in the pipeline</li>
+                <li>Reads and Writes more like a programming language so appeals in that way<br>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Starting Hive</h2>
+<div>
+    <ul>
+        <li>Start an interactive job like with hive</li>
+            <li>Logon to master node<br>
+            </li>      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+            <code style="padding: 0.0px;">$ pig<br>&gt; pwd<br>&gt; cd s3://bearrito.demos.emr/input/0<br>&gt; ls<br>
+            </code>
+        </pre>
+<code style="padding: 0.0px;">
+</code>
+<div align="center">
+        <li>Start a session</li>
+        <li>Look around<br>
+        </li>
+    </div>  
+
+</div>
+
+
+
+
+
+</section>
+    <section>
+        <h2>Loading data<br>
+        </h2>
+<div>
+    <ul>
+        <li>Import our data <br>
+    </li>
+<li>Describe it <br>
+</li>
+<li>Illustrate it<br>
+</li>      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;" <br="">
+SENSOR_RECORDS = LOAD 's3://bearrito.demos.emr/input/0' <br>&gt;as (machine_name:chararray,record_date:chararray,channel_1:float,channel_2:float,channel_3:floa
+
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+<div align="center">
+<li>You have the primitive types you would expect</li>
+<li>You haven't evaluated any statements yet</li>
+<li>Only defined the flow<br>
+</li>
+</div>  
+</div>
+</section>
+<section>
+    <h2>Queries<br>
+    </h2>
+<div>
+    <ul>
+        <li>Grouping&nbsp; <br>
+</li>
+      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;" <br="">
+GRP_SR = GROUP SENSOR_RECORDS BY machine_name<br>
+    <br>AVG_GRP_SR = FOREACH GRP_SR GENERATE group ,AVG(SENSOR_RECORDS.channel_1);<br>
+    <br>
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+<div align="center">
+<li>Notice the use of the SENSOR_RECORDS bag in the last command<br>
+</li>
+<li>You sometimes need to rely on 'illustrate tbl_name' <br>
+</li>
+<li>Note the use of the FOREACH...GENERATE</li>
+<li>This is a key construct</li>
+<li>Everything is still lazy<br>
+</li>
+</div>  
+</div>
+</section>
+<section>
+    <h2>Queries<br>
+</h2>
+<div>
+    <ul>
+        <li>Sampling + Filtering&nbsp; <br>
+</li>
+      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;" <br="">FILTERED_C3_SR = FILTER SENSOR_RECORDS BY channel_3 &gt; 10<br>
+        <br>SMPL_FLT_C3_SR = SAMPLE FILTERED_C3_SR .10;
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+<div align="center">
+<li>Syntax is usually VERB BAG PREDICATE<br>
+</li>
+</div>  
+</div>
+
+</section>
+<section>
+    <h2>Queries<br>
+</h2>
+<div>
+    <ul>
+        <li>Bags</li>
+    <li>Collapsing values to tuples and expanding back</li>
+    <li>Fields aren't necessarily atomic.&nbsp; <br>
+</li>
+      
+    </ul>
+</div>
+<div style="text-align: left;">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;" <br="">TUPLE_SR = FOREACH SENSOR_RECORDS <br>&gt;GENERATE machine_name, <br>&gt;TOTUPLE (channel_1,channel_2,channel_3) as channel_tuple;<br>
+        <br>FLAT_TUPLE_SR = FOREACH TUPLE_SR <br>&gt;GENERATE machine_name, FLATTEN(channel_tuple) ;
+<br>
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+<div align="center">
+    <br>
+</div>  
+</div>
+
+</section>
+</section>
+</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

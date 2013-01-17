@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Barrett Strausser" >
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+	<div class="slides">
+    <section>
+        <h2>
+            <br>
+        </h2>
+        <h2>Pittsburgh NoSQL<br>
+        </h2>
+        <h4>ec2 with python setup</h4>
+        <p>@barrettsmash<br>
+    </p>
+</section>
+<section>
+    <h2>NaviGATIOn</h2>
+    <ul>
+        <li>Left and Right to switch topics</li>
+        <li>Up and Down to navigate in a topic<br>
+        </li>
+    </ul>
+</section>
+<section>
+    <section>
+        <h3>Ec2/Python Setup on Debian</h3>
+<div style="text-align: left;">
+<ul>
+        <li>
+<p>Install python and boto</p>
+</li>
+    </ul>
+<pre style="margin-top: 5.0px;margin-bottom: 5.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">  
+#!/bin/bash
+apt-get update 
+apt-get install -y python python-dev python-pip
+pip install boto 
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+<ul>
+        <li>
+<p>Login to AWS and create/locate your Access Key</p>
+</li>
+</ul>
+<div>
+    <img src="http://i.imgur.com/hK5eq.png" height="264" width="701">
+</div>
+<ul>
+    <br>
+    </ul>
+</div>
+
+
+
+
+</section>
+<section>
+    <h2>EC2/Python Setup on Debian</h2>
+<div style="text-align: left;">
+<ul>
+        <li>Create and configure your boto credentials<br>
+</li>
+    </ul>
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;">  
+#!/bin/bash</code>
+    <code style="padding: 0.0px;">nano /home/&lt;youruser&gt;/.boto
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+<ul>
+        <li>Using the info from AWS do...<br>
+</li>
+    </ul>
+
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;">[Credentials]
+aws_access_key_id = {ACCESS KEY ID}
+aws_secret_access_key = {SECRET ACCESS KEY} <br>
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+</div>
+
+
+
+</section>
+<section>
+    <h2>Ec2/Python Setup on Debian</h2>
+<div style="text-align: left;">
+<ul>
+        <li>Login to your EC2 console and create/download your key</li>
+</ul>
+<img src="http://i.imgur.com/gbCMj.png" height="250" width="861">
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;">  
+#!/bin/bash
+<br>cp /path/to/key/foo.pem /home/&lt;youruser&gt;/.ssh/foo.pem<br>chmod 600 /home/&lt;youruser&gt;/.ssh/foo.pem <br>
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+
+</div>
+
+</section>
+</section>
+<section>
+    <section>
+        <h2>EC2/Python Setup on Windows</h2>
+<div style="text-align: left;">
+<ul>
+        <li>Download and install in order<br>
+</li>
+    </ul>
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+        <code style="padding: 0.0px;">http://www.python.org/ftp/python/2.7.3/python-2.7.3.amd64.msi<br>http://sourceforge.net/projects/pywin32/files/pywin32/Build216/pywin32-216.win32-py2.7.exe/download 
+</code>
+    </pre>
+<code style="padding: 0.0px;">
+</code>
+
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;">//That should have installed in C:\Python-2.7.3 or something similar<br>Add an environment variable PYTHON_HOME=C:\Python-2.7.3\<br>Add an environment variable PYTHON_SCRIPTS=C:\Python-2.7.3\Scripts\<br>Add both to your path</code>
+    <code style="padding: 0.0px;">
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+
+<code style="padding: 0.0px;">
+</code>
+
+<ul>
+        <li>Now download<br>
+</li>
+    </ul>
+
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;">http://peak.telecommunity.com/dist/ez_setup.py
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+<ul>
+        <li>Then (assumes x64 if not download x32 installer)<br>
+</li>
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;">http://peak.telecommunity.com/dist/ez_setup.py
+cmd&gt; python C:\Downloads\ez_setup.py
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+</ul>
+</div>
+
+</section>
+<section>
+    <h2>EC2/Python Setup on Windows</h2>
+<div style="text-align: left;">
+<ul>
+        <li>Install pip then boto<br>
+</li>
+    </ul>
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;">cmd&gt;easy_install  pip<br>cmd&gt;pip install boto<br>
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+
+<code style="padding: 0.0px;">
+</code>
+
+
+<code style="padding: 0.0px;">
+</code>
+
+<ul>
+        <li>Configure boto<br>
+</li>
+    </ul>
+
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+<code style="padding: 0.0px;">//Follow the steps from the debian portion to find keys &amp; secrets<br>Create your file with the name you want(e.g boto_config.cfg)<br>Place it in a location of your choice(e.g C:\Users\&lt;your_account_name&gt;\configs).<br>Create an envar with the name BOTO_CONFIG and value of the path you chose.<br>
+</code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+<ul>
+        <li>SSH Key<br>
+</li>
+<pre style="margin-top: 10.0px;margin-bottom: 10.0px;width: 810.0px;">
+    <code style="padding: 0.0px;">//This is involved. Please refer to<br>http://tuts.pinehead.tv/2011/11/21/connect-to-amazon-ec2-using-putty-private-key-on-windows/ <br>
+    </code>
+</pre>
+<code style="padding: 0.0px;">
+</code>
+
+</ul>
+</div>
+
+
+</section>
+</section>
+</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
