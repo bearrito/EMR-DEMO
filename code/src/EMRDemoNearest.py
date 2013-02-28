@@ -5,7 +5,7 @@ from boto.s3.key import Key
 from boto.emr.step import StreamingStep
 from boto.emr.bootstrap_action import BootstrapAction
 
-root_path = '/home/barrett/Git/EMR-DEMO/code/'
+root_path = '/home/me/Git/EMR-DEMO/code/'
 
 
 s3 = boto.connect_s3()

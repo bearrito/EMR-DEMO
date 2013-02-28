@@ -1,0 +1,28 @@
+$ pig
+pwd
+cd s3://bearrito.demos.emr/input/0
+ls
+
+
+SENSOR_RECORDS = LOAD 's3://bearrito.demos.emr/input/0' as (machine_name:chararray,record_date:chararray,channel_1:float,channel_2:float,channel_3:float);
+
+illustrate SENSOR_RECORDS
+
+GRP_SR = GROUP SENSOR_RECORDS BY machine_name
+
+AVG_GRP_SR = FOREACH GRP_SR GENERATE group ,AVG(SENSOR_RECORDS.channel_1);
+
+FILTERED_C3_SR = FILTER SENSOR_RECORDS BY channel_3 > 10
+
+SMPL_FLT_C3_SR = SAMPLE FILTERED_C3_SR .10;
+
+BAG_SR = FOREACH SENSOR_RECORDS GENERATE SENSOR_RECORDS.machine_name ,TOBAG (channel_1,channel_2,channel_3);
+
+TUPLE_SR = FOREACH SENSOR_RECORDS GENERATE machine_name, TOTUPLE (channel_1,channel_2,channel_3) as channel_tuple;
+
+FLAT_TUPLE_SR = FOREACH TUPLE_SR GENERATE machine_name, FLATTEN(channel_tuple) ;
+
+STORED_AVG_GRP_SR = Load 'hdfs://10.206.247.33:9000/averaged_groups' as (machine_name:chararray,channel_1_avg:float)
+
+
+

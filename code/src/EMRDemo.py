@@ -4,7 +4,7 @@ from boto.emr.step import StreamingStep
 
 
 
-root_path = '/home/barrett/Git/EMR-DEMO/code/'
+root_path = '/home/me/Git/EMR-DEMO/code/'
 s3 = boto.connect_s3()
 emr_demo_bucket = s3.create_bucket('bearrito.demos.emr')
 emr_demo_bucket.set_acl('private')
